@@ -47,7 +47,7 @@ class CategoriesController < ApplicationController
 
     def redirect_unless_admin
       if not current_user.admin?
-        redirect_to new_user_session_path
+        redirect_to new_user_session_path, flash: { error: 'You are not allowed to edit this product.' }
       end
     end
 end
