@@ -13,8 +13,18 @@
       .container-fluid
         .navbar-header
           %span.navbar-brand Netguru Kraków Workshops 2014
-        %p.navbar-text.navbar-right
-          Links should go here
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav.navbar-right
+            - if current_user
+              %li
+                =link_to "Sign out", destroy_user_session_path, method: :delete
+            - else
+              %li
+                =link_to "Sign in", new_user_session_path
+              %li
+                =link_to "Sign up", new_user_registration_path
+        / %p.navbar-text.navbar-right
+        /   Links should go here
     .container-fluid
       .row
         .col-lg-12
