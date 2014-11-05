@@ -1,7 +1,47 @@
-@import "bootstrap";
+$navbar-default-bg: #ff9e49;
+$navbar-default-link-color: #fff;
+$navbar-default-color: #fff;
+$breadcrumb-bg: #ffb06f;
+$breadcrumb-color: #fff;
+
+@import "bootstrap-sprockets", "bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,200,700);
+
 body {
   padding-top: 70px;
   padding-bottom: 20px;
   font-family: Raleway, sans-serif;
+}
+.jumbotron {
+  background-image: url(guitars.jpg);
+  background-position: bottom;
+}
+.nav .breadcrumb {
+    margin: 0 7px;
+}
+@media (min-width: 768px) {
+  .nav .breadcrumb {
+    float: right;
+    margin: 7px 10px;
+  }
+}
+
+.float-right {
+  float: right;
+}
+.no-vertical-margins {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+// Some utility classes for aligning text to both sides in one line.
+
+.clear-both {
+  clear: both;
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
 }
