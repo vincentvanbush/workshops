@@ -30,3 +30,5 @@ local.local.*
 /config/application.yml
 
 .idea/*
+
+public/assets/*
