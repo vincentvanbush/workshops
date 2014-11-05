@@ -4,9 +4,12 @@
   = @user.email
 
 %p
-  #{@user.firstname}'s latest reviews:
-  %ul
-    - @user.reviews.order("created_at").last(5).each do |review|
-      %li
-        = link_to review.product.title, category_product_path(review.product.category, review.product)
-        (#{review.product.category.name}), rated #{review.rating} on #{review.created_at.strftime('%d-%m-%y')}
+  - if @user.has_reviews?
+    #{@user.firstname}'s latest reviews:
+    %ul
+      - @user.latest_reviews.each do |review|
+        %li
+          = link_to review.product.title, category_product_path(review.product.category, review.product)
+          (#{review.product.category.name}), rated #{review.rating} on #{review.created_at.strftime('%d-%m-%y')}
+  - else
+    #{@user.firstname} has not reviewed any product yet.
