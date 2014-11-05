@@ -1,21 +1,41 @@
-%h1 Listing categories
+.jumbotron.text-center
+  %h1 Welcome to KnowYourMusic!
+  %h3
+    Share your thoughts on your favourite pieces of music.<br>
+    <b>Any</b> artist, <b>any</b> genre, <b>any</b>time.
+  - if not current_user
+    = link_to "Join us!", new_user_registration_path, class: 'btn btn-lg btn-primary'
 
-%table.table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+.col-sm-12
+  %h1 Categories
+- categories.each_slice(3) do |slice|
+  .row
+    - slice.each do |category|
+      .col-sm-4
+        .panel.panel-default
+          .panel-heading
+            %h3.no-vertical-margins
+              = link_to category.name, category
+              - if current_user && current_user.admin?
+                %small.float-right
+                  = link_to edit_category_path(category) do
+                    %span.glyphicon.glyphicon-edit
+                    Edit
+                  = link_to category, method: :delete, data: { confirm: 'Are you sure?' } do
+                    %span.glyphicon.glyphicon-remove
+                    Remove
+          .panel-body
+            %ol
+              - category.products.order("created_at").first(5).each do |product|
+                %li= link_to product.title, category_product_path(category, product)
+            .clear-both
+              %p.left
 
-  - categories.each do |category|
-    %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      - if current_user && current_user.admin?
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+              %p.right
+                = link_to category_products_path(category) do
+                  %span.glyphicon.glyphicon-th-list
+                  Show all products
 
-%br
-
-- if current_user && current_user.admin?
-  = link_to 'New Category', new_category_path
+.col-sm-12
+  - if current_user && current_user.admin?
+    = link_to 'New Category', new_category_path

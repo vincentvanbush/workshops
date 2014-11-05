@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)
 
-  add_breadcrumb "Categories", :categories_path
+  # add_breadcrumb "Categories", :categories_path
   add_breadcrumb :category_name, :category
 
   def index

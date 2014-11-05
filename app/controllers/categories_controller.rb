@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   expose(:category)
   expose(:product) { Product.new }
 
-  add_breadcrumb "Categories", :categories_path
+  # add_breadcrumb "Categories", :categories_path
 
   def index
   end
