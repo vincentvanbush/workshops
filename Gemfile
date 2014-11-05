@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
+gem 'breadcrumbs_on_rails'
 
 group :development do
   gem 'spring'

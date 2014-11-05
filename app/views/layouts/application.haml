@@ -10,20 +10,26 @@
     = javascript_include_tag 'application'
 
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .container
         .navbar-header
-          %span.navbar-brand Netguru Kraków Workshops 2014
-        .navbar-collapse.collapse
+          %button.navbar-toggle.collapsed{'data-toggle' => 'collapse', 'data-target' => '#navbar'}
+            %span.sr-only Toggle navigation
+            - 3.times do
+              %span.icon-bar
+          = link_to 'Open Music Repository', root_path, class: 'navbar-brand'
+        .navbar-collapse.collapse#navbar
           %ul.nav.navbar-nav.navbar-right
             %li.dropdown
               %a.dropdown-toggle{href: '#', 'data-toggle' => 'dropdown'}
-                Dropdown
+                = current_user ? current_user.firstname : "Account"
                 %b.caret
               %ul.dropdown-menu
                 - if current_user
                   %li
                     =link_to "My profile", user_path(current_user)
+                  %li
+                    =link_to "Edit account", edit_user_registration_path
                   %li
                     =link_to "Sign out", destroy_user_session_path, method: :delete
                 - else
@@ -31,8 +37,12 @@
                     =link_to "Sign in", new_user_session_path
                   %li
                     =link_to "Sign up", new_user_registration_path
-    .container-fluid
+    .container
+      .row
+        .col-lg-12
+          %ol.breadcrumb
+            = render_breadcrumbs :tag => :li, :separator => ""
       .row
         .col-lg-12
           = yield
-    = debug(params) if Rails.env.development?
+          = debug(params) if Rails.env.development?

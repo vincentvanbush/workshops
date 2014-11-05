@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  add_breadcrumb "Home", :root_path
+
   decent_configuration do
     strategy DecentExposure::StrongParametersStrategy
   end
