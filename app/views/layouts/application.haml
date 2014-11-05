@@ -16,16 +16,21 @@
           %span.navbar-brand Netguru Kraków Workshops 2014
         .navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar-right
-            - if current_user
-              %li
-                =link_to "Sign out", destroy_user_session_path, method: :delete
-            - else
-              %li
-                =link_to "Sign in", new_user_session_path
-              %li
-                =link_to "Sign up", new_user_registration_path
-        / %p.navbar-text.navbar-right
-        /   Links should go here
+            %li.dropdown
+              %a.dropdown-toggle{href: '#', 'data-toggle' => 'dropdown'}
+                Dropdown
+                %b.caret
+              %ul.dropdown-menu
+                - if current_user
+                  %li
+                    =link_to "My profile", user_path(current_user)
+                  %li
+                    =link_to "Sign out", destroy_user_session_path, method: :delete
+                - else
+                  %li
+                    =link_to "Sign in", new_user_session_path
+                  %li
+                    =link_to "Sign up", new_user_registration_path
     .container-fluid
       .row
         .col-lg-12
