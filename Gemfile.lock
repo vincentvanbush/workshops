@@ -41,7 +41,7 @@ GEM
     arel (5.0.1.20140414130214)
     backports (3.6.3)
     bcrypt (3.1.9)
-    bootstrap-sass (3.1.1.1)
+    bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     breadcrumbs_on_rails (2.3.0)
     builder (3.2.2)
@@ -222,7 +222,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 3.1.0)
+  bootstrap-sass (= 3.2.0.2)
   breadcrumbs_on_rails
   coffee-rails
   database_cleaner
