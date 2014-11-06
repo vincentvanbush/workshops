@@ -1,4 +1,5 @@
-%p= review.content
+%blockquote{style: 'margin-bottom: 0px'}
+  %small= review.content
 %p
   %b= review.rating
-  %em= review.author
+  %em= link_to review.author, review.user

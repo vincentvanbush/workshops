@@ -46,7 +46,7 @@
       .row.visible-xs
         .col-lg-12
           %ol.breadcrumb
-            = render_breadcrumbs :tag => :li, :separator => ""
+            = render_breadcrumbs tag: :li, separator: ""
       .row
         .col-lg-12
           - flash.each do |type, message|
@@ -57,6 +57,7 @@
           = yield
       .row
         .col-lg-12.text-center
+          %hr
           Netguru Workshops 2014<br>
           = link_to "Michał Buszkiewicz", "http://github.com/vincentvanbush/"
       .row

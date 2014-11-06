@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   expose(:category_name) { category.name }
   expose_decorated(:products)
   expose_decorated(:product)
+  expose_decorated(:user) { product.user }
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)
 

@@ -14,7 +14,8 @@ class ReviewsController < ApplicationController
       product.reviews << review
       redirect_to category_product_url(product.category, product), notice: 'Review was successfully created.'
     else
-      render action: 'new'
+      flash[:error] = "Failed to add review. Check if you have filled in all required fields."
+      redirect_to category_product_url(product.category, product)
     end
   end
 
