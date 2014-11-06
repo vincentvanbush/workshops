@@ -9,6 +9,10 @@ $link-color: navy;
 @import "bootstrap";
 @import url('//fonts.googleapis.com/css?family=Raleway:400,200,700');
 
+a:link, a:visited {
+  color: $link-color;
+}
+
 body {
   padding-top: 70px;
   padding-bottom: 20px;
