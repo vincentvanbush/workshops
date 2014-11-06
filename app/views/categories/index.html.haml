@@ -37,7 +37,7 @@
             - if category.products.empty?
               No products in this category. Yet.
             %ol
-              - category.products.order("created_at").first(5).each do |product|
+              - category.latest_five_products.each do |product|
                 %li= link_to product.title, category_product_path(category, product)
             .clear-both
               %p.left

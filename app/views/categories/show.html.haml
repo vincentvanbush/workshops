@@ -1,16 +1,28 @@
-%p
-  %b Name:
-  = category.name
-
-%p
-  - category.products.each do |product|
-    = product.title
-
-%p
-  %h3 New product
-  = render 'products/form'
-
-- if current_user && current_user.admin?
-  = link_to 'Edit', edit_category_path(category)
-  \|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+.col-md-12
+  %h1
+    = category.name
+    %small.float-right
+      = link_to category_products_path(category) do
+        %span.glyphicon.glyphicon-th-list
+        ="Show all #{category.products.size} products"
+.col-md-6
+  .jumbotron
+    %h2 Top five products
+    - category.top_five_products.each do |product|
+      %p
+        = link_to product.title, category_product_path(category, product)
+        = "(#{product.decorate.avg_rating_formatted})"
+.col-md-6
+  .jumbotron
+    %h2 Latest five products
+    - category.latest_five_products.each do |product|
+      %p
+        = link_to product.title, category_product_path(category, product)
+        = "(#{product.decorate.avg_rating_formatted})"
+- if current_user
+  .col-md-12
+    %h1
+      %small
+        = link_to new_category_product_path(category) do
+          %span.glyphicon.glyphicon-plus
+          New product

@@ -1,11 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_action :redirect_unless_admin, only: [:new, :edit, :create, :update]
-  expose(:categories)
-  expose(:category)
-  expose(:product) { Product.new }
-
-  # add_breadcrumb "Categories", :categories_path
+  expose_decorated(:categories)
+  expose_decorated(:category)
+  expose_decorated(:product)
+  expose_decorated(:products)
 
   def index
   end

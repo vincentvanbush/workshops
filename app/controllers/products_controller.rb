@@ -2,14 +2,13 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
   before_action :error_if_another_user, only: [:edit, :update]
 
-  expose(:category)
+  expose_decorated(:category)
   expose(:category_name) { category.name }
-  expose(:products)
-  expose(:product)
+  expose_decorated(:products)
+  expose_decorated(:product)
   expose(:review) { Review.new }
   expose_decorated(:reviews, ancestor: :product)
 
-  # add_breadcrumb "Categories", :categories_path
   add_breadcrumb :category_name, :category
 
   def index

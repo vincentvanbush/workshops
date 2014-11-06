@@ -15,12 +15,12 @@
     %th
 
   - if not category.products.empty?
-    - category.products.each do |product|
+    - category.products.decorate.each do |product|
       %tr
         %td= link_to product.title, category_product_path(product.category, product)
         %td= product.description
-        %td= product_avg_rating_formatted(product)
-        %td= product_price_formatted(product)
+        %td= product.avg_rating_formatted
+        %td= product.price_formatted
         - if product.user == current_user
           %td= product_link(product, :edit)
           %td= product_link(product, :destroy)

@@ -1,15 +1,23 @@
-%h1
-  = @user.full_name
-%h4
-  = @user.email
-
+.jumbotron
+  %h1
+    = @user.gravatar
+    = @user.full_name
+    %p.clear-both
 %p
-  - if @user.has_reviews?
-    #{@user.firstname}'s latest reviews:
-    %ul
-      - @user.latest_reviews.each do |review|
-        %li
-          = link_to review.product.title, category_product_path(review.product.category, review.product)
-          (#{review.product.category.name}), rated #{review.rating} on #{review.created_at.strftime('%d-%m-%y')}
-  - else
-    #{@user.firstname} has not reviewed any product yet.
+  %table.table.user-table
+    %tr
+      %td.left Email
+      %td= link_to @user.email, "mailto:#{@user.email}"
+    %tr
+      %td.left Latest reviews
+      %td
+        - if @user.has_reviews?
+          %ul
+            - @user.latest_reviews.each do |review|
+              %li
+                = link_to review.product.title, category_product_path(review.product.category, review.product)
+                (#{review.product.category.name}), rated #{review.rating} on #{review.created_at.strftime('%d-%m-%y')}
+                %blockquote
+                  %small= review.excerpt
+        - else
+          #{@user.firstname} has not reviewed any product yet.
