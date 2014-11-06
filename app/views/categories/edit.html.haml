@@ -1,7 +1,8 @@
-%h1 Editing category
+.col-md-4
+  .jumbotron
+    %h1
+      Editing category
+      %small= link_to category.name, category
 
-= render 'form'
-
-= link_to 'Show', category
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+.col-md-8
+  = render 'form'
