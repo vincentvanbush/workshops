@@ -1,6 +1,11 @@
-%h1 Listing products
+%h1
+  = "All products in #{category.name}"
+  %small.float-right
+    = link_to new_category_product_path(category) do
+      %span.glyphicon.glyphicon-plus
+      New product
 
-%table
+%table.table
   %tr
     %th Title
     %th Description
@@ -9,14 +14,23 @@
     %th
     %th
 
-  - category.products.each do |product|
+  - if not category.products.empty?
+    - category.products.each do |product|
+      %tr
+        %td= product.title
+        %td= product.description
+        %td= product.price
+        %td= product_link(product, :show)
+        - if product.user == current_user
+          %td= product_link(product, :edit)
+          %td= product_link(product, :destroy)
+        - else
+          %td &nbsp;
+          %td &nbsp;
+  - else
     %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      - if product.user == current_user
-        %td= link_to 'Edit', edit_category_product_path(product.category, product)
-        %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+      %td.text-center{colspan: 6}
+        There are no products in this category.
+
 
 %br
