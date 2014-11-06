@@ -3,41 +3,23 @@
 # Users
 admin = User.create(email: 'admin@internet.com', password: 'admin1strator',	firstname: 'Admin',	lastname: 'Adminson', admin: true)
 users = []
-5.times { |i| users << User.create(email: "user#{i}@internet.com", password: "supersecurepass", firstname: "User#{i}", lastname: "User#{i}", admin: false) }
+5.times { |i| users << User.create(email: "user#{i}@internet.com", password: "supersecurepass", firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, admin: false) }
 
 # Categories
-rock = Category.create name: 'rock'
-rap = Category.create name: 'rap'
+rock = Category.create name: 'Rock'
+rap = Category.create name: 'Rap'
+metal = Category.create name: 'Metal'
 
-rock.products.create(
-	title: 'How to Dismantle an Atomic Bomb',
-	description: 'A 2004 U2 album. Quite entertaining, actually.',
-	price: '40',
-	user: users[0])
-rock.products.create(
-	title: 'New Adventures in Hi-Fi',
-	description: 'Very good album by R.E.M. Released in 1997. Kinda rocky by their standards.',
-	price: '30',
-	user: users[1])
-rap.products.create(
-	title: 'Straight Outta Compton',
-	description: 'A breakthrough gangsta rap album by N.W.A., dated back to 1988.',
-	price: '15',
-	user: users[2])
-rap.products.create(
-	title: 'Get Rich Or Die Tryin',
-	description: 'Debut album by Fiddy Cent released in 2003.',
-	price: '20',
-	user: users[3])
+rock_albums = ['How to Dismantle an Atomic Bomb', 'New Adventures in Hi-Fi', 'Led Zeppelin IV', 'Mr Beast', 'Ceremonies', 'Revolver', '90125', 'The Wall']
+rap_albums = ['Straight Outta Compton', 'Get Rich Or Die Tryin\'', 'Ready To Die', 'The Chronic', 'The Eminem Show', 'All Eyez On Me', 'Life After Death', 'Na Rejonie']
+metal_albums = ['The Black Album', 'Master of Puppets', 'Rust in Peace', 'God Hates Us All', 'Blackwater Park', 'Paranoid', 'Moving Pictures', 'Judgement']
 
-Product.all.each do |product|
-	3.times { product.reviews.create(content: 'Some interesting review....', rating: rand(5)+1, user: users[rand(5)+1]) }
+8.times do |i|
+  rock.products.create(title: rock_albums[i], description: Faker::Lorem.paragraph(4), price: rand(40) + 11, user: users[rand(5)])
+  rap.products.create(title: rap_albums[i], description: Faker::Lorem.paragraph(4), price: rand(40) + 11, user: users[rand(5)])
+  metal.products.create(title: metal_albums[i], description: Faker::Lorem.paragraph(4), price: rand(40) + 11, user: users[rand(5)])
 end
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Product.all.each do |product|
+  3.times { product.reviews.create(content: Faker::Lorem.paragraph(rand(3)+1), rating: rand(5)+1, user: users[rand(5)+1]) }
+end
