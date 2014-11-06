@@ -21,6 +21,9 @@ body {
 .jumbotron {
   background-image: url(guitars.jpg);
   background-position: bottom;
+  &.no-background {
+    background-image: none;
+  }
 }
 .nav .breadcrumb {
     margin: 0 7px;

@@ -6,14 +6,14 @@
         %span.glyphicon.glyphicon-th-list
         ="Show all #{category.products.size} products"
 .col-md-6
-  .jumbotron
+  .jumbotron.no-background
     %h2 Top five products
     - category.top_five_products.each do |product|
       %p
         = link_to product.title, category_product_path(category, product)
         = "(#{product.decorate.avg_rating_formatted})"
 .col-md-6
-  .jumbotron
+  .jumbotron.no-background
     %h2 Latest five products
     - category.latest_five_products.each do |product|
       %p
