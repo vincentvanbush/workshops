@@ -62,6 +62,6 @@ class ProductsController < ApplicationController
   end
 
   def error_if_another_user
-    redirect_to category_product_url(category, product), flash: { error: 'You are not allowed to edit this product.' } if current_user != product.user
+    redirect_to category_product_url(category, product), flash: { error: 'You are not allowed to edit this product.' } unless current_user.admin? or current_user == product.user
   end
 end
