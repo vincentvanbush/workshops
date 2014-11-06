@@ -1,5 +1,9 @@
-%h1 New product
+.col-md-4
+  .jumbotron
+    %h1
+      New product
+      %small= link_to category.name, category
 
-= render 'form'
-
-= link_to 'Back', category_products_path
+.col-md-8
+  = render 'form'
+  = link_to 'Back', category_products_path
