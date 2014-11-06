@@ -9,18 +9,18 @@
   %tr
     %th Title
     %th Description
+    %th Average rating
     %th Price
-    %th
     %th
     %th
 
   - if not category.products.empty?
     - category.products.each do |product|
       %tr
-        %td= product.title
+        %td= link_to product.title, category_product_path(product.category, product)
         %td= product.description
-        %td= product.price
-        %td= product_link(product, :show)
+        %td= product_avg_rating_formatted(product)
+        %td= product_price_formatted(product)
         - if product.user == current_user
           %td= product_link(product, :edit)
           %td= product_link(product, :destroy)
